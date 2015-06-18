@@ -1,0 +1,76 @@
+@import url(http://fonts.googleapis.com/css?family=Indie+Flower);
+
+$headingFont: 'Indie Flower', cursive;
+
+#call-to-action {
+  padding-top: 6em;
+  padding-bottom: 6em;
+  background: {
+    color: #ccc;
+    image: url(../img/call-to-action-background.jpg);
+    size: cover;
+    position: center;
+  }
+  color: #fff;
+  h1 {
+    font-weight: 800;
+    margin-bottom: .5em;
+    color: inherit;
+  }
+}
+
+#latest-deals {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  background-image: url(../img/latest-deals-background.png);
+  a {
+    color: inherit;
+  }
+  > div:first-child {
+    padding-top: 2em;
+    padding-bottom: 2em;
+    h2 {
+      font-family: $headingFont;
+      font-size: 2.6em;
+    }
+  }
+  img {
+    padding-bottom: 1rem;
+  }
+}
+
+#deal-categories {
+  background-color: #ddd;
+  h2 {
+    font-family: $headingFont;
+    padding: {
+      top: 1em;
+      bottom: 1em;
+    }
+  }
+  i {
+    font-size: 6em;
+    padding-bottom: 1rem;
+  }
+  a {
+    color: #333;
+  }
+}
+
+#footer {
+  padding-top: 4em;
+  padding-bottom: 4em;
+  background-color: #333;
+  color: #fff;
+  h1 {
+    color: inherit;
+    font-family: $headingFont;
+  }
+  label {
+    color: inherit;
+  }
+  i {
+    display: inline-block;
+    width: 1.4em;
+  }
+}
