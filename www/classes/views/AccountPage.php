@@ -2,6 +2,12 @@
 
 class AccountPage extends Page {
 
+	// Properties
+	private $existingPasswordError;
+	private $newPasswordError;
+	private $confirmPasswordError;
+	private $passwordChangeMessage;
+
 	public function contentHTML() {
 
 		// Make sure that the user is logged in
@@ -13,7 +19,7 @@ class AccountPage extends Page {
 
 		}
 
-		include 'templates/account.php';
+		include 'templates/accountpage.php';
 
 		// If user is an admin
 		if( $_SESSION['privilege'] == 'admin' ) {
@@ -22,6 +28,42 @@ class AccountPage extends Page {
 
 		}
 	
+	}
+
+	private function processPasswordChange() {
+
+		// Validate
+		if( strlen($_POST['existing-password']) == 0 ) {
+			$this->existingPasswordError = 'Required';
+		} elseif( !$this->model->checkPassword($_POST['existing-password']) ) {
+			$this->existingPasswordError = 'Incorrect password';
+		}
+
+		if( strlen($_POST['new-password']) < 8 ) {
+			$this->newPasswordError = 'Needs to be more than 8 characters';
+		}
+
+		if( strlen($_POST['confirm-password']) < 8 ) {
+			$this->confirmPasswordError = 'Needs to be more than 8 characters';
+		} elseif( $_POST['confirm-password'] != $_POST['new-password'] ) {
+			$this->confirmPasswordError = 'Does not match the new password';
+		}
+
+		// If no errors
+		if( $this->existingPasswordError == '' && $this->newPasswordError == '' && $this->confirmPasswordError == '' ) {
+
+			// Update the password
+			$result = $this->model->updatePassword();
+
+			// If updating the password was a success
+			if( $result ) {
+				$this->passwordChangeMessage = 'Successfully changed your password!';
+			} else {
+				$this->passwordChangeMessage = 'Something went wrong updating your password...';
+			}
+
+		}
+
 	}
 
 }

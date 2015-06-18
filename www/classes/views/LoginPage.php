@@ -22,6 +22,12 @@ class LoginPage extends Page {
 
 	}
 
+	public function contentHTML() {
+
+		include 'templates/login.php';
+
+	}
+
 	public function processLoginForm() {
 
 		// Save the username
@@ -48,11 +54,7 @@ class LoginPage extends Page {
 
 	}
 
-	public function contentHTML() {
-
-		include 'templates/login.php';
-
-	}
+	
 
 }
 
